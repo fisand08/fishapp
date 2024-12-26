@@ -1,0 +1,14 @@
+
+/* Navbar highlighting */
+.navbar-nav li.nav-item a.nav-link:hover {
+    color: rgb(5, 67, 75) ; /* Hover text color */
+    font-weight: bold; /* Make text bold on hover */
+
+}
+
+
+#karusell {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+  

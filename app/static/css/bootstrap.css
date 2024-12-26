@@ -4623,18 +4623,23 @@ input[type="button"].btn-block {
   border: 1px solid transparent;
   border-radius: 0.25rem;
 }
-/* 
+
 .navbar-toggler:hover,
 .navbar-toggler:focus {
   text-decoration: none;
-} */
+  color: red;
+}
 
 
-.nav-link:hover,
+/* .nav-link:hover,
 .nav-link:focus {
   text-decoration: none;
-  background-color: #007bff; /* Change background color */
-  color: #fff;              /* Change text color */
+  background-color: #c48cc1;
+  color: #fff;             
+} */
+
+.navbar-nav .nav-link:hover {
+  color: red; /* Change to your desired hover color */
 }
 
 
@@ -4777,7 +4782,7 @@ input[type="button"].btn-block {
     padding-left: 0.5rem;
   }
 
-  .navbar-expand-lg>.container,
+  .navbar-expand-hov>.container,
   .navbar-expand-lg>.container-fluid {
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;

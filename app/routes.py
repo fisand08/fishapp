@@ -29,10 +29,18 @@ def index():
 def contact():
     return render_template('contact.html')
 
+@app.route('/map')
+def map():
+    return render_template('map.html')
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
+
+@app.route('/shop')
+def shop():
+    return render_template('shop.html')
+
+@app.route('/catches')
+def catches():
+    return render_template('catches.html')
 
 @app.route('/furniture')
 def furniture():
