@@ -4623,11 +4623,20 @@ input[type="button"].btn-block {
   border: 1px solid transparent;
   border-radius: 0.25rem;
 }
-
+/* 
 .navbar-toggler:hover,
 .navbar-toggler:focus {
   text-decoration: none;
+} */
+
+
+.nav-link:hover,
+.nav-link:focus {
+  text-decoration: none;
+  background-color: #007bff; /* Change background color */
+  color: #fff;              /* Change text color */
 }
+
 
 .navbar-toggler-icon {
   display: inline-block;
