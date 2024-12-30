@@ -87,6 +87,24 @@ Template genommen von: https://www.free-css.com/free-css-templates/page295/edgec
           </div>
         </div>
       </nav>
+      <div id="language_bar">
+        <span>
+          <div id="language-options">
+              <button data-lang="de" class="language_button">
+                  <img src="{{ url_for('static', filename='images/de.svg') }}" alt="" class="language_icon"> Deutsch
+              </button>
+              <button data-lang="en" class="language_button">
+                  <img src="{{ url_for('static', filename='images/uk.svg') }}" alt="" class="language_icon"> English
+              </button>
+              <button data-lang="fr" class="language_button">
+                  <img src="{{ url_for('static', filename='images/fr.svg') }}" alt="" class="language_icon"> Français
+              </button>
+              <button data-lang="es" class="language_button">
+                  <img src="{{ url_for('static', filename='images/it.svg') }}" alt="" class="language_icon"> Italiano
+              </button>
+          </div>        
+        </span>
+      </div>
     </header>
     <!-- end header section -->
 

@@ -12,3 +12,14 @@
     padding-bottom: 100px;
 }
   
+.language_icon {
+    width: 18px;
+    height: auto; /* Maintain aspect ratio */
+    display: inline-block;
+}
+
+.language_button {
+    font-size: 14px;
+    background-color: #ffffff;
+    border: none;
+}

@@ -1,105 +1,79 @@
-2024-04-10 20:31:29,072 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-10 20:31:30,077 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-10 20:31:36,252 ERROR: Exception on /register [GET] [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\flask\app.py:828]
-Traceback (most recent call last):
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\flask\app.py", line 872, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\flask\app.py", line 870, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\flask\app.py", line 855, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\routes.py", line 99, in register
-    return render_template('register.html', title='Register', form=form)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\flask\templating.py", line 149, in render_template
-    template = app.jinja_env.get_or_select_template(template_name_or_list)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\jinja2\environment.py", line 1010, in get_template
-    return self._load_template(name, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\jinja2\environment.py", line 969, in _load_template
-    template = self.loader.load(self, name, self.make_globals(globals))
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\jinja2\loaders.py", line 137, in load
-    code = environment.compile(source, name, filename)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\jinja2\environment.py", line 768, in compile
-    self.handle_exception(source=source_hint)
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\templates\register.html", line 9, in template
-    {% block content %}
-jinja2.exceptions.TemplateAssertionError: block 'content' defined twice
-2024-04-10 20:33:38,693 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-10 20:33:39,574 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-10 20:33:45,374 ERROR: Exception on /register [GET] [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\flask\app.py:828]
-Traceback (most recent call last):
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\flask\app.py", line 872, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\flask\app.py", line 870, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\flask\app.py", line 855, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\routes.py", line 99, in register
-    return render_template('register.html', title='Register', form=form)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\flask\templating.py", line 149, in render_template
-    template = app.jinja_env.get_or_select_template(template_name_or_list)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\jinja2\environment.py", line 1010, in get_template
-    return self._load_template(name, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\jinja2\environment.py", line 969, in _load_template
-    template = self.loader.load(self, name, self.make_globals(globals))
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\jinja2\loaders.py", line 137, in load
-    code = environment.compile(source, name, filename)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\jinja2\environment.py", line 768, in compile
-    self.handle_exception(source=source_hint)
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\venv\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\templates\register.html", line 9, in template
-    {% block content %}
-jinja2.exceptions.TemplateAssertionError: block 'content' defined twice
-2024-04-10 21:19:37,207 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-10 21:19:38,024 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-10 21:31:03,037 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-10 21:31:03,749 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-10 21:31:55,770 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-10 21:31:56,629 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-10 21:33:35,370 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-10 21:33:36,210 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-10 21:36:19,271 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-10 21:36:20,309 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-11 07:27:26,553 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-11 07:27:28,035 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-11 07:27:37,211 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-11 07:27:38,290 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-11 07:29:09,858 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-11 07:29:11,220 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-11 07:29:27,200 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-11 07:29:28,292 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-11 07:33:50,382 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-11 07:33:51,687 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:46]
-2024-04-11 10:19:47,683 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:49]
-2024-04-11 10:19:48,802 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:49]
-2024-04-11 10:21:19,366 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:49]
+2024-04-11 10:21:44,200 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:49]
+2024-04-11 10:21:45,350 INFO: App startup [in C:\Users\117940\OneDrive - DSM\Documents\PRIV\from_scratch\app\__init__.py:49]
+2024-12-23 10:28:36,878 INFO: App startup [in C:\Users\André\Documents\Fishing_App\stock_monitor-main\app\__init__.py:49]
+2024-12-23 10:28:37,719 INFO: App startup [in C:\Users\André\Documents\Fishing_App\stock_monitor-main\app\__init__.py:49]
+2024-12-23 10:33:02,628 INFO: App startup [in C:\Users\André\Documents\Fishing_App\stock_monitor-main\app\__init__.py:49]
+2024-12-23 10:33:02,670 INFO: App startup [in C:\Users\André\Documents\Fishing_App\stock_monitor-main\app\__init__.py:49]
+2024-12-23 10:33:02,670 INFO: App startup [in C:\Users\André\Documents\Fishing_App\stock_monitor-main\app\__init__.py:49]
+2024-12-23 10:33:13,240 INFO: App startup [in C:\Users\André\Documents\Fishing_App\stock_monitor-main\app\__init__.py:49]
+2024-12-23 10:33:13,284 INFO: App startup [in C:\Users\André\Documents\Fishing_App\stock_monitor-main\app\__init__.py:49]
+2024-12-23 10:33:13,284 INFO: App startup [in C:\Users\André\Documents\Fishing_App\stock_monitor-main\app\__init__.py:49]
+2024-12-23 10:33:21,391 INFO: App startup [in C:\Users\André\Documents\Fishing_App\stock_monitor-main\app\__init__.py:49]
+2024-12-23 10:34:06,579 INFO: App startup [in C:\Users\André\Documents\Fishing_App\stock_monitor-main\app\__init__.py:49]
+2024-12-23 10:34:07,392 INFO: App startup [in C:\Users\André\Documents\Fishing_App\stock_monitor-main\app\__init__.py:49]
+2024-12-23 10:34:51,023 INFO: App startup [in C:\Users\André\Documents\Fishing_App\stock_monitor-main\app\__init__.py:49]
+2024-12-23 10:34:51,823 INFO: App startup [in C:\Users\André\Documents\Fishing_App\stock_monitor-main\app\__init__.py:49]
+2024-12-23 10:41:04,585 INFO: App startup [in C:\Users\André\Documents\Fishing_App\stock_monitor-main\app\__init__.py:49]
+2024-12-23 10:45:43,019 INFO: App startup [in C:\Users\André\Documents\Fishing_App\stock_monitor-main\app\__init__.py:49]
+2024-12-23 10:45:53,398 INFO: App startup [in C:\Users\André\Documents\Fishing_App\stock_monitor-main\app\__init__.py:49]
+2024-12-23 10:45:54,224 INFO: App startup [in C:\Users\André\Documents\Fishing_App\stock_monitor-main\app\__init__.py:49]
+2024-12-23 11:27:05,248 INFO: App startup [in C:\Users\André\Documents\Fishing_App\stock_monitor-main\app\__init__.py:49]
+2024-12-23 11:27:06,057 INFO: App startup [in C:\Users\André\Documents\Fishing_App\stock_monitor-main\app\__init__.py:49]
+2024-12-26 20:47:26,596 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 20:47:28,280 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 21:12:07,349 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 21:12:08,794 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 21:13:11,662 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 21:13:12,815 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 21:14:04,918 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 21:14:06,450 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 22:37:24,919 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 22:37:26,709 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 22:41:40,299 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 22:41:41,470 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 22:42:29,954 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 22:42:31,239 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 22:44:48,485 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 22:44:49,463 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 22:46:04,909 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 22:46:06,253 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 22:48:22,013 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 22:48:23,704 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 22:49:05,282 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 22:49:06,951 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 22:49:44,968 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 22:49:46,636 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 23:27:42,224 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 23:27:43,187 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 23:30:37,548 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 23:31:28,153 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 23:31:33,586 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 23:31:34,428 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 23:43:19,669 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 23:44:09,142 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 23:44:10,049 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 23:47:19,576 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 23:47:20,463 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 23:50:54,994 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 23:50:55,747 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 23:51:15,767 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 23:51:16,539 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 23:52:27,653 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-26 23:52:28,370 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-27 19:55:20,103 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-27 19:55:21,005 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-27 19:57:01,061 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-27 19:57:01,969 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-30 10:40:01,040 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-30 10:40:02,808 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-30 10:46:00,337 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-30 10:46:01,805 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-30 10:46:47,465 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-30 10:46:48,692 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-30 10:49:47,266 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-30 10:49:48,685 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-30 10:59:32,894 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-30 10:59:34,353 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-30 11:00:25,473 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-30 11:00:26,735 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2024-12-30 11:04:11,377 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
