@@ -23,3 +23,21 @@
     background-color: #ffffff;
     border: none;
 }
+
+/* Carossel Indicator (kleiner Kreis): inaktiv */
+/* #0ca4cc */
+.slider_section .carousel-indicators li {
+    background-color: #0ca4cc;   
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    opacity: 1;
+}
+
+/* Carousel indicator (kleiner kreis): aktiv */
+
+.slider_section .carousel-indicators li.active {
+    width: 17px;
+    height: 17px;
+    background-color: #006782;
+}

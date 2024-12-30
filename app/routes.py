@@ -25,9 +25,9 @@ def index():
 
     #return render_template('index.html',title='Starting page',user=mock_user)
 
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
+@app.route('/fishing_infos')
+def fishing_infos():
+    return render_template('fishing_infos.html')
 
 @app.route('/map')
 def map():

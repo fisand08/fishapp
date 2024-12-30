@@ -68,7 +68,7 @@ Template genommen von: https://www.free-css.com/free-css-templates/page295/edgec
                 <a class="nav-link" href="{{ url_for('shop') }}">Shop</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
+                <a class="nav-link" href="{{ url_for('fishing_infos') }}">Infos</a>
               </li>
             </ul>
           </div>
@@ -87,8 +87,8 @@ Template genommen von: https://www.free-css.com/free-css-templates/page295/edgec
           </div>
         </div>
       </nav>
-      <div id="language_bar">
-        <span>
+      <div id="language_bar" style="display: flex;">
+        <span style="margin-left: auto;">
           <div id="language-options">
               <button data-lang="de" class="language_button">
                   <img src="{{ url_for('static', filename='images/de.svg') }}" alt="" class="language_icon"> Deutsch
