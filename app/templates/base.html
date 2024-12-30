@@ -12,7 +12,7 @@ Template genommen von: https://www.free-css.com/free-css-templates/page295/edgec
   <!-- Mobile Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <!-- Site Metas -->
-  <link rel="icon" href="{{ url_for('static', filename='images/fevicon.png') }}" type="image/gif" />
+  <link rel="icon" href="{{ url_for('static', filename='images/icon_1.png') }}" type="image/gif" />
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
@@ -42,9 +42,10 @@ Template genommen von: https://www.free-css.com/free-css-templates/page295/edgec
     <!-- header section strats -->
     <header class="header_section long_section px-0">
       <nav class="navbar navbar-expand-lg custom_nav-container ">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="{{ url_for('index') }}">
           <span>
-            Edgecut
+            <!-- Edgecut -->
+            <img src="{{ url_for('static', filename='images/Line_Logo_2.png') }}" alt="" style="height: 45px;">
           </span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
