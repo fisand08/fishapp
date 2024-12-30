@@ -1,11 +1,15 @@
 
 /* Navbar highlighting */
 .navbar-nav li.nav-item a.nav-link:hover {
-    color: rgb(5, 67, 75) ; /* Hover text color */
+    color: #006782 ; /* Hover text color */
     font-weight: bold; /* Make text bold on hover */
 
 }
 
+.language_button:hover{
+    color:#006782;
+    font-weight: bold;
+}
 
 #karusell {
     padding-top: 100px;
@@ -40,4 +44,32 @@
     width: 17px;
     height: 17px;
     background-color: #006782;
+}
+
+/* testimonial box */
+.client_section .box .img-box {
+    border-radius: 100%;
+    border: 10px solid #006782;
+    margin-right: 25px;
+    min-width: 175px;
+    max-width: 175px;
+    overflow: hidden;
+}
+
+/* Testomonial name*/
+.client_section .box .detail-box .name h6 {
+    color: #006782;
+    font-size: 20px;
+}
+
+/* B U T T O N S */
+
+.custom_button_1 {
+    background-color: #006782;
+}
+
+
+.contact_section .form_container button {
+    background-color: #006782;
+    color: #ffffff;
 }

@@ -10,11 +10,18 @@
     "carousel-3_text":"On the SwissFishingMap, many catch reports at Swiss fishing waters are documented. We will help you find the big ones!",
 
 
-    "testimonial-text_1":"Mit der SwissFishingMap habe ich neue Gewässer gefunden in meiner Nähe, wo ich sogar meinen neuen Hecht-PB gefangen habe!",
-    "testimonial-text_2":"Nach dem ich meinen SaNa gemacht habe, half mir SwissFishingMap meine erste Forelle in unserem Dorfbach zu fangen. Ich konnte über den Kontakt mit dem Pächter eine Tageskarte für den Bach ergattern. Vielen Dank!",
-    "testimonial-text_3":"Ich nutze die SwissFishingMap um Gewässer in der Schweiz zu erkunden und direkt zu wissen, wo die Schongebiete sind und wo ich meine Patente kriege!"
+    "testimonial-text_1":"With the SwissFishingMap I found new spots close to where I live. It helped me to catch my pike PB!",
+    "testimonial-text_2":"After passing my SaNa exam, SwissFishingMap helped me to catch my first trout in a local stream. I was able to contact the owner and buy a daily license. Thank you!",
+    "testimonial-text_3":"I use SwissFishingApp to expolore Swiss fishing waters and directly see where the protection areas are and where I can buy my licenses!",
 
     
+    "testimonial_title":"Testimonial",
+    "contact_heading":"Contact Us",
+    "ix_input_name":"Name",
+    "ix_input_mail":"Email",
+    "ix_input_message":"Message",
+    "ix_contact_send_button":"SENDEN"
+
 
 
 }
