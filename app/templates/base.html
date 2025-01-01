@@ -99,7 +99,7 @@ Template genommen von: https://www.free-css.com/free-css-templates/page295/edgec
               <button data-lang="fr" class="language_button">
                   <img src="{{ url_for('static', filename='images/fr.svg') }}" alt="" class="language_icon"> Français
               </button>
-              <button data-lang="es" class="language_button">
+              <button data-lang="it" class="language_button">
                   <img src="{{ url_for('static', filename='images/it.svg') }}" alt="" class="language_icon"> Italiano
               </button>
           </div>        
@@ -129,12 +129,12 @@ Template genommen von: https://www.free-css.com/free-css-templates/page295/edgec
             Email : demo@gmail.com
           </span>
         </a>
-        <a href="">
+        <!-- <a href="">
           <i class="fa fa-map-marker" aria-hidden="true"></i>
           <span>
             Location
           </span>
-        </a>
+        </a> -->
       </div>
 
       <div class="info_top ">
@@ -236,6 +236,38 @@ Template genommen von: https://www.free-css.com/free-css-templates/page295/edgec
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
   <!-- End Google Map -->
 
-</body>
+<script>
+  $(document).ready(function () {
+      // Function to load translations
+      function loadTranslations(lang) {
+        $.getJSON(`/static/translations/${lang}.json`, function (translations) {
+          if (translations.error) {
+                  console.error("Translation error:", translations.error);
+              } else {
+                  // Update elements dynamically by matching IDs
+                  Object.keys(translations).forEach(function (id) {
+                      const element = $(`#${id}`);
+                      if (element.length) {
+                          element.text(translations[id]);
+                      }
+                  });
+              }
+          }).fail(function () {
+              console.error(`Failed to load translations for language: ${lang}`);
+          });
+      }
 
+      // Add click listeners to language buttons
+      $('.language_button').on('click', function () {
+          const selectedLang = $(this).data('lang'); // Get selected language
+          loadTranslations(selectedLang); // Load and apply translations
+      });
+
+      // Load default language on page load (e.g., German)
+      loadTranslations('de');
+  });
+
+
+</script>
+</body>
 </html>
