@@ -1,0 +1,120 @@
+2025-01-02 20:39:05,989 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 20:39:07,183 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 20:39:11,592 ERROR: Exception on /get_coords [GET] [in C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py:828]
+Traceback (most recent call last):
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: Water_Coords.coord
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\routes.py", line 86, in get_coords
+    coords = Water_Coords.query.filter(Water_Coords.water_id == water.water_id).all()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\orm\session.py", line 2236, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\orm\context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\engine\base.py", line 2353, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: Water_Coords.coord
+[SQL: SELECT "Water_Coords".water_id AS "Water_Coords_water_id", "Water_Coords".coord AS "Water_Coords_coord" 
+FROM "Water_Coords" 
+WHERE "Water_Coords".water_id = ?]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-01-02 20:41:39,332 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 20:41:44,500 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 20:41:45,662 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 20:44:50,451 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 20:46:48,249 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 20:46:59,884 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 20:51:08,292 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 20:51:09,473 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 20:51:42,730 ERROR: Exception on /get_coords [GET] [in C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py:828]
+Traceback (most recent call last):
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\routes.py", line 89, in get_coords
+    coord_dict = {'lat': coord.coord_x, 'lng': coord.coord_y}
+                         ^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'coord_x'
+2025-01-02 20:51:42,975 ERROR: Exception on /get_coords [GET] [in C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py:828]
+Traceback (most recent call last):
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\routes.py", line 89, in get_coords
+    coord_dict = {'lat': coord.coord_x, 'lng': coord.coord_y}
+                         ^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'coord_x'
+2025-01-02 20:51:49,928 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 20:51:50,845 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 20:57:07,599 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 20:57:08,741 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 21:26:44,387 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 21:27:16,571 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 21:42:28,090 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]

@@ -59,55 +59,58 @@ def load_user(id):
     return db.session.get(User, int(id)) # needs to be converted to int as string 
 
 
-class Water(db.Model):
+class WATER(db.Model):
     # __bind_key__ = 'local_db'
     __tablename__ = 'Water'
 
-    water_id = db.Column(db.Integer, primary_key=True)
-    water_name = db.Column(db.String(1024))
-    water_type = db.Column(db.String(1024))
-    water_country = db.Column(db.String(1024))
-    water_region = db.Column(db.String(1024))
-    water_owner_id = db.Column(db.Integer, primary_key=True) 
-    schongebiet = db.Column(db.Boolean)
-
+    WATER_ID = db.Column(db.Integer, primary_key=True)
+    WATER_NAME = db.Column(db.String(1024))
+    WATER_TYPE = db.Column(db.String(1024))
+    WATER_COUNTRY = db.Column(db.String(1024))
+    WATER_REGION = db.Column(db.String(1024))
+    WATER_OWNER_ID = db.Column(db.Integer) 
+    SCHONGEBIET = db.Column(db.Boolean)
+    WATER_SEASON_ID = db.Column(db.Integer)
+    
     def __repr__(self):
         return f'Water {self.water_id}'
 
 
-class Water_Coords(db.Model):
+class WATER_COORDS(db.Model):
     # __bind_key__ = 'local_db'
     __tablename__ = 'Water_Coords'
 
-    water_id = db.Column(db.Integer, primary_key=True)
-    coord = db.Column(db.Float)
+    COORD_ID = db.Column(db.Integer, primary_key=True)
+    WATER_ID = db.Column(db.Integer)
+    COORD_X = db.Column(db.Float)
+    COORD_Y = db.Column(db.Float)
 
     def __repr__(self):
-        return f'Error {self.error_idx} submitted by {self.submitting_user} at {self.submission.date}'
+        return f'water_id {self.water_id}'
 
 
-class Water_Owners(db.Model):
+class WATER_OWNERS(db.Model):
     # __bind_key__ = 'local_db'
     __tablename__ = 'Water_Owners'
 
-    Owner_ID = db.Column(db.Integer, primary_key=True)
-    Name = db.Column(db.String(1024))
-    Surname = db.Column(db.String(1024))
-    Address_Street = db.Column(db.String(1024))
-    Address_PLZ = db.Column(db.Integer)
-    Address_City = db.Column(db.String(1024))
-    Address_Country = db.Column(db.String(1024))
+    OWNER_ID = db.Column(db.Integer, primary_key=True)
+    OWNER_NAME = db.Column(db.String(1024))
+    OWNER_STREET = db.Column(db.String(1024))
+    OWNER_PLZ = db.Column(db.Integer)
+    OWNER_CITY = db.Column(db.String(1024))
+    OWNER_COUNTRY = db.Column(db.String(1024))
 
     def __repr__(self):
         return f'Error {self.error_idx} submitted by {self.submitting_user} at {self.submission.date}'
 
-class Water_Season(db.Model):
+
+class WATER_SEASON(db.Model):
     # __bind_key__ = 'local_db'
     __tablename__ = 'Water_Season'
 
-    Saison_ID = db.Column(db.Integer, primary_key=True)
-    Saison_From = db.Column(db.DateTime)
-    Saison_To = db.Column(db.DateTime)
+    SAISON_ID = db.Column(db.Integer, primary_key=True)
+    SAISON_FROM = db.Column(db.DateTime)
+    SAISON_TO = db.Column(db.DateTime)
     
     def __repr__(self):
         return f'Error {self.error_idx} submitted by {self.submitting_user} at {self.submission.date}'

@@ -1,15 +1,78 @@
 {% extends "base.html" %}
 <!-- Start page; inherits from base.html -->
 {% block content %}
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+        #info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: white;
+            padding: 10px;
+            z-index: 1000;
+            border: 1px solid #ccc;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgBwgs5MqH3y-hhWORHb78miJg0CqBSGw"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!--
+    AIzaSyCgBwgs5MqH3y-hhWORHb78miJg0CqBSGw
+    -->
+    <section class="client_section layout_padding-bottom">
+        <div class="container">
+        <div class="heading_container">
+            <h2 id="testimonial_title">
+            Maps
+            </h2>
+        </div>
+        </div>
+
+        <div id="info">Hover or click on a shape to see details.</div>
+        <div id="map"></div>
+        
 
 
-<section class="client_section layout_padding-bottom">
-    <div class="container">
-      <div class="heading_container">
-        <h2 id="testimonial_title">
-          Maps
-        </h2>
-      </div>
-    </div>
-</section>
+    </section>
+
+    <script>
+        let map;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 47.34340641554805, lng: 7.87643344258413 },
+                zoom: 10,
+            });
+
+            // Fetch river/lake data from Flask backend
+            $.getJSON("/get_coords", function (data) {
+                data.forEach((feature) => {
+                    const shape = new google.maps.Polyline({
+                        path: feature.coordinates,
+                        geodesic: true,
+                        strokeColor: "#FF0000",
+                        strokeOpacity: 1.0,
+                        strokeWeight: 2,
+                        map: map,
+                    });
+
+                    // Add hover event
+                    google.maps.event.addListener(shape, "mouseover", function () {
+                        document.getElementById("info").innerText =
+                            feature.name + ": " + feature.description;
+                    });
+
+                    // Add click event
+                    google.maps.event.addListener(shape, "click", function () {
+                        alert("You clicked on " + feature.name + "!");
+                    });
+                });
+            });
+        }
+
+        // Initialize the map
+        window.onload = initMap;
+    </script>
 {% endblock %}
