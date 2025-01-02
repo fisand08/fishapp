@@ -1,7 +1,7 @@
 from app import app, db
 from flask import render_template, flash, redirect, url_for
 from app.forms import LoginForm, RegistrationForm, EditProfileForm
-from app.models import User
+from app.models import User, Water, Water_Coords
 import sqlalchemy as sa
 from flask_login import current_user, login_user, logout_user, login_required
 from flask import request
@@ -31,6 +31,10 @@ def fishing_infos():
 
 @app.route('/map')
 def map():
+
+    query_test = Water.query.filter(Water.water_id == 1).first()
+    print(f'query_test: {query_test.water_name} {query_test.schongebiet}')
+
     return render_template('map.html')
 
 

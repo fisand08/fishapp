@@ -28,7 +28,6 @@ class User(UserMixin, db.Model):  # inherts from db.Model, the bas lass for all 
     Relationship to new class Portfolio "author" object; so.relationship() is model class that represents the other side of the relationship;
     the "back_populates" arguments reference the name of the relationship attribute on the other side
     """
-    portfolios: so.WriteOnlyMapped['Portfolio'] = so.relationship(back_populates='author')
 
     """
     - password hash is used instead of password to not store them as plain text if DB is comprimised
@@ -41,20 +40,8 @@ class User(UserMixin, db.Model):  # inherts from db.Model, the bas lass for all 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
     
-    about_me: so.Mapped[Optional[str]] = so.mapped_column(sa.String(140))
     last_seen: so.Mapped[Optional[datetime]] = so.mapped_column(
         default=lambda: datetime.now(timezone.utc))
-
-
-    def avatar(self,size):
-        """
-        Alternative to Gravatar
-        Example:  https://ui-avatars.com/api/?name=Andre+Fischer&?background=0D8ABC&color=fff 
-        Returns URL to avatar image
-        """
-        bg_color = get_random_color(self.username)
-        return f'https://ui-avatars.com/api/?name={self.username[0]}+{self.username[1]}&?background={bg_color}&color=fff&?size={size}'
-        
 
 
     def __repr__(self):
@@ -70,4 +57,58 @@ def load_user(id):
     - flask-login needs to know about the DB, user is loaded via id
     """
     return db.session.get(User, int(id)) # needs to be converted to int as string 
+
+
+class Water(db.Model):
+    # __bind_key__ = 'local_db'
+    __tablename__ = 'Water'
+
+    water_id = db.Column(db.Integer, primary_key=True)
+    water_name = db.Column(db.String(1024))
+    water_type = db.Column(db.String(1024))
+    water_country = db.Column(db.String(1024))
+    water_region = db.Column(db.String(1024))
+    water_owner_id = db.Column(db.Integer, primary_key=True) 
+    schongebiet = db.Column(db.Boolean)
+
+    def __repr__(self):
+        return f'Water {self.water_id}'
+
+
+class Water_Coords(db.Model):
+    # __bind_key__ = 'local_db'
+    __tablename__ = 'Water_Coords'
+
+    water_id = db.Column(db.Integer, primary_key=True)
+    coord = db.Column(db.Float)
+
+    def __repr__(self):
+        return f'Error {self.error_idx} submitted by {self.submitting_user} at {self.submission.date}'
+
+
+class Water_Owners(db.Model):
+    # __bind_key__ = 'local_db'
+    __tablename__ = 'Water_Owners'
+
+    Owner_ID = db.Column(db.Integer, primary_key=True)
+    Name = db.Column(db.String(1024))
+    Surname = db.Column(db.String(1024))
+    Address_Street = db.Column(db.String(1024))
+    Address_PLZ = db.Column(db.Integer)
+    Address_City = db.Column(db.String(1024))
+    Address_Country = db.Column(db.String(1024))
+
+    def __repr__(self):
+        return f'Error {self.error_idx} submitted by {self.submitting_user} at {self.submission.date}'
+
+class Water_Season(db.Model):
+    # __bind_key__ = 'local_db'
+    __tablename__ = 'Water_Season'
+
+    Saison_ID = db.Column(db.Integer, primary_key=True)
+    Saison_From = db.Column(db.DateTime)
+    Saison_To = db.Column(db.DateTime)
+    
+    def __repr__(self):
+        return f'Error {self.error_idx} submitted by {self.submitting_user} at {self.submission.date}'
 

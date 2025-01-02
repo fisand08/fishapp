@@ -79,11 +79,11 @@ Template genommen von: https://www.free-css.com/free-css-templates/page295/edgec
               </span>
               <i class="fa fa-user" aria-hidden="true"></i>
             </a>
-            <form class="form-inline">
+            <!-- <form class="form-inline">
               <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
                 <i class="fa fa-search" aria-hidden="true"></i>
               </button>
-            </form>
+            </form> -->
           </div>
         </div>
       </nav>
@@ -239,23 +239,54 @@ Template genommen von: https://www.free-css.com/free-css-templates/page295/edgec
 <script>
   $(document).ready(function () {
       // Function to load translations
+
+      // function loadTranslations(lang) {
+      //   $.getJSON(`/static/translations/${lang}.json`, function (translations) {
+      //     if (translations.error) {
+      //             console.error("Translation error:", translations.error);
+      //         } else {
+      //             // Update elements dynamically by matching IDs
+      //             Object.keys(translations).forEach(function (id) {
+      //                 const element = $(`#${id}`);
+      //                 if (element.length) {
+      //                     element.text(translations[id]);
+      //                 }
+      //             });
+      //         }
+      //     }).fail(function () {
+      //         console.error(`Failed to load translations for language: ${lang}`);
+      //     });
+      // }
+
       function loadTranslations(lang) {
         $.getJSON(`/static/translations/${lang}.json`, function (translations) {
-          if (translations.error) {
-                  console.error("Translation error:", translations.error);
-              } else {
-                  // Update elements dynamically by matching IDs
-                  Object.keys(translations).forEach(function (id) {
-                      const element = $(`#${id}`);
-                      if (element.length) {
-                          element.text(translations[id]);
-                      }
-                  });
-              }
-          }).fail(function () {
-              console.error(`Failed to load translations for language: ${lang}`);
-          });
-      }
+            if (translations.error) {
+                console.error("Translation error:", translations.error);
+            } else {
+                // Update elements dynamically by matching IDs
+                Object.keys(translations).forEach(function (id) {
+                    const element = $(`#${id}`);
+                    if (element.length) {
+                        // Check if the element is an input with a placeholder
+                        if (element.is("input")) {
+                            element.attr("placeholder", translations[id]);
+                        } 
+                        // Check if the element is a button
+                        else if (element.is("button")) {
+                            element.text(translations[id]);
+                        } 
+                        // For other elements, update text content
+                        else {
+                            element.text(translations[id]);
+                        }
+                    }
+                });
+            }
+        }).fail(function () {
+            console.error(`Failed to load translations for language: ${lang}`);
+        });
+    }
+
 
       // Add click listeners to language buttons
       $('.language_button').on('click', function () {
