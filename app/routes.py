@@ -94,31 +94,8 @@ def get_coords():
         data_per_water.update({'coordinates': coordinates})
         coord_data.append(data_per_water)
 
-    print(coord_data)
-    return jsonify(coord_data)
-
-
-"""
-data = [
-    {
-        "name": "River A",
-        "description": "A major river flowing through the region.",
-        "coordinates": [
-            {"lat": 34.0522, "lng": -118.2437},
-            {"lat": 34.0622, "lng": -118.2537},
-        ],
-    },
-    {
-        "name": "Lake B",
-        "description": "A serene lake surrounded by mountains.",
-        "coordinates": [
-            {"lat": 34.0722, "lng": -118.2637},
-            {"lat": 34.0822, "lng": -118.2737},
-            {"lat": 34.0922, "lng": -118.2837},
-        ],
-    },
-]
-"""
+    #print(coord_data)
+    return jsonify(coord_data[:15])
 
 
 
