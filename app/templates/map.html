@@ -1,78 +1,120 @@
 {% extends "base.html" %}
-<!-- Start page; inherits from base.html -->
 {% block content %}
-    <style>
-        #map {
-            height: 100vh;
-            width: 100%;
-        }
-        #info {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: white;
-            padding: 10px;
-            z-index: 1000;
-            border: 1px solid #ccc;
-        }
-    </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgBwgs5MqH3y-hhWORHb78miJg0CqBSGw"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <!--
-    AIzaSyCgBwgs5MqH3y-hhWORHb78miJg0CqBSGw
-    -->
-    <section class="client_section layout_padding-bottom">
-        <div class="container">
+<style>
+    #map {
+        height: 90vh;
+        width: 90%; /* Adjust the width to 80% */
+        margin: 0 auto; /* Center the map horizontally */
+        border: 1px solid #ccc; /* Optional: Add a border for better visual distinction */
+    }
+    /* Modal Styles */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1050; /* Sit on top */
+        padding-top: 10%;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+    }
+    .modal-content {
+        margin: auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 5px;
+        width: 60%;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    .modal-header {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    .modal-close {
+        float: right;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+</style>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgBwgs5MqH3y-hhWORHb78miJg0CqBSGw&loading=async"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<section class="client_section layout_padding-bottom">
+    <div class="container">
         <div class="heading_container">
-            <h2 id="testimonial_title">
-            Maps
+            <h2 id="maps_title">
+                Maps
             </h2>
         </div>
+    </div>
+
+    <div id="map"></div>
+
+    <!-- Modal -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-header" id="modalTitle"></div>
+            <div id="modalBody"></div>
         </div>
+    </div>
+</section>
 
-        <div id="info">Hover or click on a shape to see details.</div>
-        <div id="map"></div>
-        
+<script>
+    let map;
 
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+            // center: { lat: 47.34340641554805, lng: 7.87643344258413 },
+            // 46.79473013202843, 8.257157079565662
+            center: { lat: 46.79473013202843, lng: 8.257157079565662 },
+            zoom: 9,
+        });
 
-    </section>
+        // Fetch river/lake data from Flask backend
+        $.getJSON("/get_coords", function (data) {
+            data.forEach((feature) => {
+                const shape = new google.maps.Polyline({
+                    path: feature.coordinates,
+                    geodesic: true,
+                    strokeColor: "#FF0000",
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2,
+                    map: map,
+                });
 
-    <script>
-        let map;
-
-        function initMap() {
-            map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: 47.34340641554805, lng: 7.87643344258413 },
-                zoom: 9,
-            });
-
-            // Fetch river/lake data from Flask backend
-            $.getJSON("/get_coords", function (data) {
-                data.forEach((feature) => {
-                    const shape = new google.maps.Polyline({
-                        path: feature.coordinates,
-                        geodesic: true,
-                        strokeColor: "#FF0000",
-                        strokeOpacity: 1.0,
-                        strokeWeight: 2,
-                        map: map,
-                    });
-
-                    // Add hover event
-                    google.maps.event.addListener(shape, "mouseover", function () {
-                        document.getElementById("info").innerText =
-                            feature.name + ": " + feature.description;
-                    });
-
-                    // Add click event
-                    google.maps.event.addListener(shape, "click", function () {
-                        alert("You clicked on " + feature.name + "!");
-                    });
+                // Add click event to show modal
+                google.maps.event.addListener(shape, "click", function () {
+                    document.getElementById("modalTitle").innerText = feature.name;
+                    document.getElementById("modalBody").innerText = feature.description;
+                    showModal();
                 });
             });
-        }
+        });
+    }
 
-        // Initialize the map
-        window.onload = initMap;
-    </script>
+    // Function to show the modal
+    function showModal() {
+        const modal = document.getElementById("infoModal");
+        modal.style.display = "block";
+
+        // Close modal when the close button is clicked
+        document.querySelector(".modal-close").onclick = function () {
+            modal.style.display = "none";
+        };
+
+        // Close modal when clicked outside the content
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+    }
+
+    // Initialize the map
+    window.onload = initMap;
+</script>
 {% endblock %}

@@ -95,7 +95,7 @@ def get_coords():
         coord_data.append(data_per_water)
 
     #print(coord_data)
-    return jsonify(coord_data[:15])
+    return jsonify(coord_data)
 
 
 

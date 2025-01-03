@@ -20,7 +20,9 @@
     "ix_input_name":"Name",
     "ix_input_mail":"Email",
     "ix_input_message":"Message",
-    "ix_contact_send_button":"SENDEN"
+    "ix_contact_send_button":"SEND",
+    "maps_title":"Map"
+
 
 
 

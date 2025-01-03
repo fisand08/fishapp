@@ -17,5 +17,7 @@
     "ix_input_name": "Nome",
     "ix_input_mail": "E-mail",
     "ix_input_message": "Messaggio",
-    "ix_contact_send_button": "INVIA"
+    "ix_contact_send_button": "INVIA",
+    "maps_title":"Carta"
+
 }
