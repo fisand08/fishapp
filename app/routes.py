@@ -66,6 +66,37 @@ def furniture():
 #######                LOGIC                     #########
 ##########################################################
 
+# @app.route('/get_coords', methods=['GET', 'POST'])
+# def get_coords():
+#     """
+#     description:
+#         - queries coordinates from database into proper format
+#     input: 
+#         - nothing
+#     output:
+#         - coord_data: list of dict; data in proper format
+#     """
+
+#     coord_data = []
+
+#     waters = WATER.query.all()
+#     print(f'Found {len(waters)} waters')
+#     for water in waters:
+#         data_per_water = {}
+#         coordinates = [] 
+#         coords = WATER_COORDS.query.filter(WATER_COORDS.WATER_ID == water.WATER_ID).all()
+#         print(f'found {len(coords)} coordinates for {water.WATER_NAME} with id={water.WATER_ID}')
+#         for coord in coords:
+#             coord_dict = {'lat': coord.COORD_X, 'lng': coord.COORD_Y}
+#             coordinates.append(coord_dict)  # Append to `coordinates`
+#         data_per_water.update({'name': water.WATER_NAME})
+#         data_per_water.update({'description': water.WATER_TYPE})
+#         data_per_water.update({'coordinates': coordinates})
+#         coord_data.append(data_per_water)
+
+#     #print(coord_data)
+#     return jsonify(coord_data)
+
 @app.route('/get_coords', methods=['GET', 'POST'])
 def get_coords():
     """
@@ -77,26 +108,34 @@ def get_coords():
         - coord_data: list of dict; data in proper format
     """
 
-    coord_data = []
+    # Use a single query with a join to fetch all required data
+    results = (
+        db.session.query(
+            WATER.WATER_ID,
+            WATER.WATER_NAME,
+            WATER.WATER_TYPE,
+            WATER_COORDS.COORD_X,
+            WATER_COORDS.COORD_Y
+        )
+        .join(WATER_COORDS, WATER.WATER_ID == WATER_COORDS.WATER_ID)
+        .all()
+    )
 
-    waters = WATER.query.all()
-    print(f'Found {len(waters)} waters')
-    for water in waters:
-        data_per_water = {}
-        coordinates = [] 
-        coords = WATER_COORDS.query.filter(WATER_COORDS.WATER_ID == water.WATER_ID).all()
-        print(f'found {len(coords)} coordinates for {water.WATER_NAME} with id={water.WATER_ID}')
-        for coord in coords:
-            coord_dict = {'lat': coord.COORD_X, 'lng': coord.COORD_Y}
-            coordinates.append(coord_dict)  # Append to `coordinates`
-        data_per_water.update({'name': water.WATER_NAME})
-        data_per_water.update({'description': water.WATER_TYPE})
-        data_per_water.update({'coordinates': coordinates})
-        coord_data.append(data_per_water)
+    # Organize data into the desired format
+    coord_data = {}
+    for water_id, water_name, water_type, coord_x, coord_y in results:
+        if water_id not in coord_data:
+            coord_data[water_id] = {
+                'name': water_name,
+                'description': water_type,
+                'coordinates': []
+            }
+        coord_data[water_id]['coordinates'].append({'lat': coord_x, 'lng': coord_y})
 
-    #print(coord_data)
-    return jsonify(coord_data)
+    # Convert the data structure to a list of dictionaries
+    coord_data_list = list(coord_data.values())
 
+    return jsonify(coord_data_list)
 
 
 ##########################################################
