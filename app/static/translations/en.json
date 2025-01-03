@@ -23,7 +23,14 @@
     "ix_contact_send_button":"SEND",
     "maps_title":"Fishing Map",
     "legend_title_1":"LEGEND",
-    "filter_title_1":"FILTER"
+    "filter_title_1":"FILTERS",
+
+    "legend_element_public": "Public Waters",
+    "legend_element_private": "Private Waters",
+    "legend_element_schongebiet": "Conservation Areas",
+    "list_element_filter_public": "Public Waters",
+    "list_element_filter_private": "Private Waters",
+    "list_element_filter_schongebiet": "Conservation Areas"
 
 
 

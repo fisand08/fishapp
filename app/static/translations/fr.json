@@ -20,6 +20,13 @@
     "ix_contact_send_button": "ENVOYER",
     "maps_title":"Carte Peche",
     "legend_title_1":"LEGEND",
-    "filter_title_1":"FILTERS"
+    "filter_title_1":"FILTERS",
+
+    "legend_element_public": "Eaux publiques",
+    "legend_element_private": "Eaux privées",
+    "legend_element_schongebiet": "Zones de conservation",
+    "list_element_filter_public": "Eaux publiques",
+    "list_element_filter_private": "Eaux privées",
+    "list_element_filter_schongebiet": "Zones de conservation"
 
 }

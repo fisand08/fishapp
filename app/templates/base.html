@@ -240,24 +240,6 @@ Template genommen von: https://www.free-css.com/free-css-templates/page295/edgec
   $(document).ready(function () {
       // Function to load translations
 
-      // function loadTranslations(lang) {
-      //   $.getJSON(`/static/translations/${lang}.json`, function (translations) {
-      //     if (translations.error) {
-      //             console.error("Translation error:", translations.error);
-      //         } else {
-      //             // Update elements dynamically by matching IDs
-      //             Object.keys(translations).forEach(function (id) {
-      //                 const element = $(`#${id}`);
-      //                 if (element.length) {
-      //                     element.text(translations[id]);
-      //                 }
-      //             });
-      //         }
-      //     }).fail(function () {
-      //         console.error(`Failed to load translations for language: ${lang}`);
-      //     });
-      // }
-
       function loadTranslations(lang) {
         $.getJSON(`/static/translations/${lang}.json`, function (translations) {
             if (translations.error) {

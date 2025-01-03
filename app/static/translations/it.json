@@ -20,6 +20,13 @@
     "ix_contact_send_button": "INVIA",
     "maps_title":"Carte Pesca",
     "legend_title_1":"LEGEND",
-    "filter_title_1":"FILTERS"
+    "filter_title_1":"FILTERS",
+
+    "legend_element_public": "Acque pubbliche",
+    "legend_element_private": "Acque private",
+    "legend_element_schongebiet": "Aree di conservazione",
+    "list_element_filter_public": "Acque pubbliche",
+    "list_element_filter_private": "Acque private",
+    "list_element_filter_schongebiet": "Aree di conservazione"
 
 }
