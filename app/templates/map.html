@@ -83,121 +83,147 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
     window.initMap = function () {
-        const map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: 46.93344282067525, lng: 8.22573253428211 },
-            zoom: 9,
-            styles: [
-                { "elementType": "geometry", "stylers": [{ "visibility": "simplified" }] },
-                { "featureType": "poi", "elementType": "labels", "stylers": [{ "visibility": "off" }] },
-                { "featureType": "poi.business", "stylers": [{ "visibility": "off" }] },
-            ]
-        });
+    const map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 46.93344282067525, lng: 8.22573253428211 },
+        zoom: 9,
+        styles: [
+            { "elementType": "geometry", "stylers": [{ "visibility": "simplified" }] },
+            { "featureType": "poi", "elementType": "labels", "stylers": [{ "visibility": "off" }] },
+            { "featureType": "poi.business", "stylers": [{ "visibility": "off" }] },
+        ]
+    });
 
-        const shapes = [];
+    const shapes = [];
 
-        // Fetch river/lake data
-        $.getJSON("/get_coords", function (data) {
-            data.forEach((feature) => {
-                let riverColor = feature.public === 1 ? "#0ca4cc" : "#006782";
-                if (feature.schongebiet === 1) riverColor = "#94062c";
+    // Fetch river/lake data
+    $.getJSON("/get_coords", function (data) {
+        data.forEach((feature) => {
+            let riverColor = feature.public === 1 ? "#0ca4cc" : "#006782";
+            if (feature.schongebiet === 1) riverColor = "#94062c";
 
-                const shape = new google.maps.Polyline({
-                    path: feature.coordinates,
-                    geodesic: true,
-                    strokeColor: riverColor,
-                    strokeOpacity: 1.0,
-                    strokeWeight: 3,
-                    map: map,
-                });
+            const shape = new google.maps.Polyline({
+                path: feature.coordinates,
+                geodesic: true,
+                strokeColor: riverColor,
+                strokeOpacity: 1.0,
+                strokeWeight: 3,
+                map: map,
+            });
 
-                const invisibleShape = new google.maps.Polyline({
-                    path: feature.coordinates,
-                    geodesic: true,
-                    strokeOpacity: 0.0,
-                    strokeWeight: 12,
-                    clickable: true,
-                    map: map,
-                });
+            const invisibleShape = new google.maps.Polyline({
+                path: feature.coordinates,
+                geodesic: true,
+                strokeOpacity: 0.0,
+                strokeWeight: 12,
+                clickable: true,
+                map: map,
+            });
 
-                shapes.push({ shape, invisibleShape, waterId: feature.id });
+            shapes.push({ shape, public: feature.public, schongebiet: feature.schongebiet });
 
-                google.maps.event.addListener(invisibleShape, "click", function () {
-                    fetchWaterDetails(feature.id);
-                });
+            google.maps.event.addListener(invisibleShape, "click", function () {
+                fetchWaterDetails(feature.id);
             });
         });
+    });
 
-        function fetchWaterDetails(waterId) {
-            console.log('waterId:', waterId);
-            $.ajax({
-                url: "/get_water",
-                method: "POST",
-                data: JSON.stringify({ waterId: waterId }),
-                contentType: "application/json",
-                success: function (response) {
-                    if (response.error) {
-                        alert(response.error);
-                        return;
-                    }
-                    populateModal(response.water_info, response.catches);
-                },
-                error: function (xhr) {
-                    const response = xhr.responseJSON || {};
-                    alert(response.error || "An unexpected error occurred.");
-                },
-            });
-        }
+    // Filter logic
+    const applyFilters = () => {
+        const showPublic = document.getElementById("filterPublic").checked;
+        const showPrivate = document.getElementById("filterPrivate").checked;
+        const showSchongebiet = document.getElementById("filterSchongebiet").checked;
 
-        function populateModal(waterInfo, catches) {
-            const modalTitle = document.getElementById("modalTitle");
-            const modalBody = document.getElementById("modalBody");
-
-            modalTitle.innerText = waterInfo.WATER_NAME || "Water Details";
-            const waterDetails = `
-                <table>
-                    <tr><th>Owner</th><td>${waterInfo.OWNER_PUBLIC_INT || "N/A"}</td></tr>
-                    <tr><th>Season</th><td>${waterInfo.SAISON_FROM} - ${waterInfo.SAISON_TO}</td></tr>
-                    <tr><th>Region</th><td>${waterInfo.WATER_REGION || "Unknown"}</td></tr>
-                    <tr><th>Type</th><td>${waterInfo.WATER_TYPE || "Unknown"}</td></tr>
-                    <tr><th>Freiangelei</th><td>${waterInfo.FREIANGELEI ? "Yes" : "No"}</td></tr>
-                </table>`;
-
-            let catchDetails = "<h4>Catches</h4>";
-            if (catches && catches.length > 0) {
-                catchDetails += `
-                    <table>
-                        <thead>
-                            <tr><th>Fish Name</th><th>Length (cm)</th></tr>
-                        </thead>
-                        <tbody>
-                            ${catches.map(
-                                (catchData) => `<tr><td>${catchData.FISH_NAME}</td><td>${catchData.CATCH_LENGTH || "N/A"}</td></tr>`
-                            ).join("")}
-                        </tbody>
-                    </table>`;
+        shapes.forEach(({ shape, public: isPublic, schongebiet }) => {
+            if (
+                (isPublic && showPublic) ||
+                (!isPublic && showPrivate) ||
+                (parseInt(schongebiet) === 1 && showSchongebiet)
+            ) {
+                shape.setMap(map); // Show shape
             } else {
-                catchDetails += "<p>No catches available.</p>";
+                shape.setMap(null); // Hide shape
             }
-
-            modalBody.innerHTML = `${waterDetails}<hr>${catchDetails}`;
-            showModal();
-        }
-
-        function showModal() {
-            const modal = document.getElementById("infoModal");
-            modal.style.display = "block";
-
-            document.querySelector(".modal-close").onclick = function () {
-                modal.style.display = "none";
-            };
-
-            window.onclick = function (event) {
-                if (event.target === modal) {
-                    modal.style.display = "none";
-                }
-            };
-        }
+        });
     };
+
+    // Attach event listeners to checkboxes
+    document.getElementById("filterPublic").addEventListener("change", applyFilters);
+    document.getElementById("filterPrivate").addEventListener("change", applyFilters);
+    document.getElementById("filterSchongebiet").addEventListener("change", applyFilters);
+
+    function fetchWaterDetails(waterId) {
+        console.log('waterId:', waterId);
+        $.ajax({
+            url: "/get_water",
+            method: "POST",
+            data: JSON.stringify({ waterId: waterId }),
+            contentType: "application/json",
+            success: function (response) {
+                if (response.error) {
+                    alert(response.error);
+                    return;
+                }
+                populateModal(response.water_info, response.catches);
+            },
+            error: function (xhr) {
+                const response = xhr.responseJSON || {};
+                alert(response.error || "An unexpected error occurred.");
+            },
+        });
+    }
+
+    function populateModal(waterInfo, catches) {
+        const modalTitle = document.getElementById("modalTitle");
+        const modalBody = document.getElementById("modalBody");
+
+        modalTitle.innerText = waterInfo.WATER_NAME || "Water Details";
+        const waterDetails = `
+            <table>
+                <tr><th>Owner</th><td>${waterInfo.OWNER_PUBLIC_INT || "N/A"}</td></tr>
+                <tr><th>Season</th><td>${waterInfo.SAISON_FROM} - ${waterInfo.SAISON_TO}</td></tr>
+                <tr><th>Region</th><td>${waterInfo.WATER_REGION || "Unknown"}</td></tr>
+                <tr><th>Type</th><td>${waterInfo.WATER_TYPE || "Unknown"}</td></tr>
+                <tr><th>Freiangelei</th><td>${waterInfo.FREIANGELEI ? "Yes" : "No"}</td></tr>
+            </table>`;
+
+        let catchDetails = "<h4>Catches</h4>";
+        if (catches && catches.length > 0) {
+            catchDetails += `
+                <table>
+                    <thead>
+                        <tr><th>Fish Name</th><th>Length (cm)</th></tr>
+                    </thead>
+                    <tbody>
+                        ${catches.map(
+                            (catchData) => `<tr><td>${catchData.FISH_NAME}</td><td>${catchData.CATCH_LENGTH || "N/A"}</td></tr>`
+                        ).join("")}
+                    </tbody>
+                </table>`;
+        } else {
+            catchDetails += "<p>No catches available.</p>";
+        }
+
+        modalBody.innerHTML = `${waterDetails}<hr>${catchDetails}`;
+        showModal();
+    }
+
+    function showModal() {
+        const modal = document.getElementById("infoModal");
+        modal.style.display = "block";
+
+        document.querySelector(".modal-close").onclick = function () {
+            modal.style.display = "none";
+        };
+
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+    }
+};
+
+
 </script>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgBwgs5MqH3y-hhWORHb78miJg0CqBSGw&callback=initMap"></script>
