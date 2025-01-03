@@ -79,6 +79,44 @@
         const map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 46.93344282067525, lng: 8.22573253428211 },
             zoom: 9,
+            styles: [
+                {
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "visibility": "simplified"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "labels",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.business",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                // Hide mountain POIs (logo/icons related to mountains)
+                {
+                    "featureType": "poi",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                }
+            ]
         });
 
         const shapes = []; // Store all shapes for filtering
@@ -133,6 +171,7 @@
         document.getElementById("filterPrivate").addEventListener("change", applyFilters);
         document.getElementById("filterSchongebiet").addEventListener("change", applyFilters);
     };
+
 
     // Modal logic
     function showModal() {
