@@ -1,7 +1,7 @@
 from app import app, db
 from flask import render_template, flash, redirect, url_for
 from app.forms import LoginForm, RegistrationForm, EditProfileForm
-from app.models import User, WATER, WATER_COORDS, WATER_OWNERS, WATER_SEASON
+from app.models import User, WATER, WATER_COORDS, WATER_OWNERS, WATER_SEASON, CATCHES, FISHES
 import sqlalchemy as sa
 from flask_login import current_user, login_user, logout_user, login_required
 from flask import request, jsonify
@@ -94,7 +94,7 @@ def get_coords():
 
         .all()
     )
-    
+
     # Organize data into the desired format
     coord_data = {}
     for water_id, water_name, water_type, water_owner_id, schongebiet, coord_x, coord_y, owner_public in results:
@@ -122,29 +122,46 @@ def get_water():
         - queries water details
     """
 
-    results_owner = db.session.query(WATER_OWNERS.OWNER_PUBLIC).all()
-    print(results_owner)
 
     results = (
         db.session.query(
             WATER.WATER_ID,
             WATER.WATER_NAME,
             WATER.WATER_TYPE,
+            WATER.WATER_REGION,
             WATER.SCHONGEBIET,
             WATER.WATER_SEASON_ID,
             WATER.FREIANGELEI,
             WATER_OWNERS.OWNER_ID,
             WATER_OWNERS.OWNER_PUBLIC_INT,
             WATER_SEASON.SAISON_FROM,
-            WATER_SEASON.SAISON_TO
+            WATER_SEASON.SAISON_TO,
+            CATCHES.CATCH_FISH_ID,
+            CATCHES.CATCH_LENGTH,
+            FISHES.FISH_ID,
+            FISHES.FISH_NAME
         )
+        .filter(WATER.WATER_ID == 1)
         .join(WATER_OWNERS, WATER.WATER_OWNER_ID == WATER_OWNERS.OWNER_ID)
         .join(WATER_SEASON, WATER.WATER_SEASON_ID == WATER_SEASON.SAISON_ID)
+        .join(CATCHES, WATER.WATER_ID == CATCHES.WATER_ID)
+        .join(FISHES, CATCHES.CATCH_FISH_ID == FISHES.FISH_ID)
         .all()
     )
     print(results)
 
-    return jsonify({'results':'result'})
+
+    return jsonify({
+        "WATER_ID": results.WATER_ID,
+        "WATER_NAME": results.WATER_NAME,
+        "WATER_TYPE": results.WATER_TYPE,
+        "SCHONGEBIET": results.SCHONGEBIET,
+        "FREIANGELEI": results.FREIANGELEI,
+        "OWNER_PUBLIC_INT": results.OWNER_PUBLIC_INT,
+        "SAISON_FROM": results.SAISON_FROM,
+        "SAISON_TO": results.SAISON_TO,
+    })
+
 
 
 ##########################################################

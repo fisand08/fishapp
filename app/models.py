@@ -105,7 +105,7 @@ class WATER_OWNERS(db.Model):
     OWNER_PUBLIC_INT = db.Column(db.Integer)
 
     def __repr__(self):
-        return f'Error {self.error_idx} submitted by {self.submitting_user} at {self.submission.date}'
+        return f'Owner {self.OWNER_ID}'
 
 
 class WATER_SEASON(db.Model):
@@ -117,5 +117,27 @@ class WATER_SEASON(db.Model):
     SAISON_TO = db.Column(db.DateTime)
     
     def __repr__(self):
-        return f'Error {self.error_idx} submitted by {self.submitting_user} at {self.submission.date}'
+        return f'Season {self.SAISON_ID}'
 
+
+class FISHES(db.Model):
+    __tablename__ = 'FISHES'
+
+    FISH_ID = db.Column(db.Integer, primary_key=True)
+    FISH_NAME = db.Column(db.String(1024))
+
+    def __repr__(self):
+        return f'Owner {self.FISH_ID}'
+    
+    
+class CATCHES(db.Model):
+    __tablename__ = 'FISHES'
+
+    CATCH_ID = db.Column(db.Integer, primary_key=True)
+    WATER_ID = db.Column(db.Integer)
+    CATCH_FISH_ID = db.Column(db.Integer)
+    CATCH_LENGTH = db.Column(db.Float)
+    CATCH_PIC_PATH = db.Column(db.String(1024))
+
+    def __repr__(self):
+        return f'Owner {self.CATCH_ID}'
