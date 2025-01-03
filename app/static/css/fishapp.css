@@ -73,3 +73,9 @@
     background-color: #006782;
     color: #ffffff;
 }
+
+
+/* C H E C K B O X */
+.custom-checkbox-1:checked {
+    accent-color: #006782; /* Blue color when checked */
+}

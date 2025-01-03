@@ -1,6 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
 <style>
+    /* Legend Styles*/
+    .legend_title {
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    /* Modal Styles */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1050; /* Sit on top */
+        padding-top: 10%;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+    }
+    .modal-content {
+        margin: auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 5px;
+        width: 80%;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    .modal-header {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    .modal-close {
+        float: right;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
 
     #controls {
         display: flex;
@@ -60,7 +96,7 @@
                     geodesic: true,
                     strokeColor: riverColor,
                     strokeOpacity: 1.0,
-                    strokeWeight: 2,
+                    strokeWeight: 3,
                     map: map,
                 });
 
@@ -120,7 +156,7 @@
 <section class="client_section layout_padding-bottom" style="padding-bottom: 0px;">
     <div class="container">
         <div class="heading_container">
-            <h2 id="maps_title">Karte</h2>
+            <h2 id="maps_title">Gewässerkarte</h2>
         </div>
     </div>
 
@@ -137,7 +173,7 @@
 
 <div id="controls">
     <div id="legend">
-        <h3>Legend</h3>
+        <h3 id="legend_title_1" class="legend_title">LEGEND</h3>
         <ul>
             <li><div class="color-box" style="background-color: #0ca4cc;"></div> Public Water</li>
             <li><div class="color-box" style="background-color: #006782;"></div> Private Water</li>
@@ -146,11 +182,11 @@
     </div>
 
     <div id="filters">
-        <h3>Filter</h3>
+        <h3 id="filter_title_1" class="legend_title">FILTERS</h3>
         <ul>
-            <li><input type="checkbox" id="filterPublic" checked> Public Water</li>
-            <li><input type="checkbox" id="filterPrivate" checked> Private Water</li>
-            <li><input type="checkbox" id="filterSchongebiet" checked> Schongebiet</li>
+            <li><input type="checkbox" id="filterPublic" class="custom-checkbox-1" checked> Public Water</li>
+            <li><input type="checkbox" id="filterPrivate" class="custom-checkbox-1" checked> Private Water</li>
+            <li><input type="checkbox" id="filterSchongebiet"  class="custom-checkbox-1" checked> Schongebiet</li>
         </ul>
     </div>
 </div>

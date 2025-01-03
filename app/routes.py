@@ -94,8 +94,7 @@ def get_coords():
 
         .all()
     )
-    print(results[:20])
-
+    
     # Organize data into the desired format
     coord_data = {}
     for water_id, water_name, water_type, water_owner_id, schongebiet, coord_x, coord_y, owner_public in results:

@@ -21,7 +21,9 @@
     "ix_input_mail":"Email",
     "ix_input_message":"Message",
     "ix_contact_send_button":"SEND",
-    "maps_title":"Map"
+    "maps_title":"Fishing Map",
+    "legend_title_1":"LEGEND",
+    "filter_title_1":"FILTER"
 
 
 

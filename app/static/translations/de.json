@@ -17,7 +17,11 @@
     "contact_heading":"Kontakt",
     "ix_input_name":"Name",
     "ix_input_mail":"Email",
-    "ix_input_message":"Nachricht"
+    "ix_input_message":"Nachricht",
+    "ix_contact_send_button":"SENDEN",
+    "maps_title":"Gewässerkarte",
+    "legend_title_1":"LEGENDE",
+    "filter_title_1":"FILTER"
     
 
 
