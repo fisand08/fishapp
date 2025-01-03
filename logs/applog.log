@@ -1,67 +1,44 @@
-2025-01-03 18:27:33,482 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 18:27:34,272 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 18:28:34,792 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 18:28:59,168 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 18:29:00,159 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 18:32:24,372 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 18:38:51,879 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 18:38:52,787 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 18:49:32,438 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 18:49:33,343 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 18:54:15,320 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 18:54:16,102 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 18:55:06,484 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 18:55:07,279 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 18:56:48,302 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 18:56:49,085 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 18:57:10,039 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 18:57:10,808 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 18:59:09,572 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 18:59:10,442 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 19:03:39,343 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 19:03:40,224 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 19:03:56,542 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 19:03:57,304 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 19:05:43,884 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 19:05:44,650 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 19:16:50,043 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 19:16:50,937 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 19:17:05,993 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 19:20:55,090 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 19:20:56,024 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 19:31:28,915 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 19:31:29,722 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 19:36:00,510 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 19:36:01,314 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 19:37:51,419 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 19:37:52,425 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 22:15:37,386 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 22:15:38,300 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 22:20:13,238 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 22:20:14,024 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 22:20:27,505 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 22:20:28,260 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 22:30:51,064 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 22:30:51,951 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 22:34:08,826 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 22:34:09,595 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 22:46:45,022 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 22:46:45,904 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 22:51:03,032 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 22:51:03,879 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 22:51:34,947 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 22:51:35,748 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 22:52:50,077 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 22:52:50,867 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 22:53:19,274 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 22:53:20,092 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 23:00:54,154 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 23:00:55,062 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 23:05:09,574 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 23:16:00,909 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 23:16:35,528 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 23:18:56,749 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 23:19:59,844 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 23:20:56,763 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 23:21:00,772 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-03 23:23:58,126 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 23:33:22,886 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 23:33:23,671 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 23:34:53,153 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 23:34:58,329 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 23:34:59,146 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 23:35:07,316 ERROR: Error in /get_water: Request data is missing or not in JSON format. [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\routes.py:181]
+Traceback (most recent call last):
+  File "C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\routes.py", line 121, in get_water
+    raise ValueError("Request data is missing or not in JSON format.")
+ValueError: Request data is missing or not in JSON format.
+2025-01-03 23:41:13,199 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 23:41:14,113 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 23:41:26,780 ERROR: Error in /get_water: Request data is missing or not in JSON format. [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\routes.py:181]
+Traceback (most recent call last):
+  File "C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\routes.py", line 121, in get_water
+    raise ValueError("Request data is missing or not in JSON format.")
+ValueError: Request data is missing or not in JSON format.
+2025-01-03 23:43:15,764 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 23:43:16,525 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 23:43:20,440 ERROR: Error in /get_water: Request data is missing or not in JSON format. [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\routes.py:181]
+Traceback (most recent call last):
+  File "C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\routes.py", line 121, in get_water
+    raise ValueError("Request data is missing or not in JSON format.")
+ValueError: Request data is missing or not in JSON format.
+2025-01-03 23:44:09,398 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 23:44:16,655 ERROR: Error in /get_water: dict.get() takes no keyword arguments [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\routes.py:182]
+Traceback (most recent call last):
+  File "C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\routes.py", line 124, in get_water
+    water_id = data.get("waterId", type=int)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: dict.get() takes no keyword arguments
+2025-01-03 23:45:52,899 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 23:46:12,251 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 23:46:18,768 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 23:46:19,535 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 23:46:25,215 ERROR: Error in /get_water: dict.get() takes no keyword arguments [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\routes.py:185]
+Traceback (most recent call last):
+  File "C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\routes.py", line 127, in get_water
+    water_id = data.get("waterId", type=int)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: dict.get() takes no keyword arguments
+2025-01-03 23:46:52,053 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 23:46:57,747 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 23:46:58,500 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <style>
-    /* Legend Styles*/
+    /* Legend Styles */
     .legend_title {
         font-weight: bold;
         font-size: 1.2rem;
@@ -20,6 +20,7 @@
         overflow: auto;
         background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
     }
+
     .modal-content {
         margin: auto;
         padding: 20px;
@@ -28,10 +29,12 @@
         width: 80%;
         box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
     }
+
     .modal-header {
         font-size: 1.5rem;
         margin-bottom: 15px;
     }
+
     .modal-close {
         float: right;
         font-size: 1.5rem;
@@ -44,6 +47,7 @@
         width: 90%; /* Match the map width */
         margin: 10px auto; /* Center horizontally */
     }
+
     #legend, #filters {
         flex: 1;
         padding: 10px;
@@ -52,18 +56,22 @@
         background-color: #f9f9f9;
         box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
     }
+
     #legend {
         margin-right: 10px;
     }
+
     #legend ul, #filters ul {
         list-style-type: none;
         padding: 0;
     }
+
     #legend li {
         display: flex;
         align-items: center;
         margin-bottom: 5px;
     }
+
     #legend .color-box {
         width: 20px;
         height: 20px;
@@ -74,60 +82,24 @@
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-    // Define initMap globally for Google Maps API callback
     window.initMap = function () {
         const map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 46.93344282067525, lng: 8.22573253428211 },
             zoom: 9,
             styles: [
-                {
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "visibility": "simplified"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi",
-                    "elementType": "labels",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi.business",
-                    "elementType": "all",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                // Hide mountain POIs (logo/icons related to mountains)
-                {
-                    "featureType": "poi",
-                    "elementType": "all",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                }
+                { "elementType": "geometry", "stylers": [{ "visibility": "simplified" }] },
+                { "featureType": "poi", "elementType": "labels", "stylers": [{ "visibility": "off" }] },
+                { "featureType": "poi.business", "stylers": [{ "visibility": "off" }] },
             ]
         });
 
-        const shapes = []; // Store all shapes for filtering
+        const shapes = [];
 
-        // Fetch river/lake data from Flask backend
+        // Fetch river/lake data
         $.getJSON("/get_coords", function (data) {
             data.forEach((feature) => {
-                // Determine river color
-                let riverColor = "#006782"; // Default private
-                if (parseInt(feature.public) === 1) riverColor = "#0ca4cc"; // Public
-                if (parseInt(feature.schongebiet) === 1) riverColor = "#94062c"; // Schongebiet
+                let riverColor = feature.public === 1 ? "#0ca4cc" : "#006782";
+                if (feature.schongebiet === 1) riverColor = "#94062c";
 
                 const shape = new google.maps.Polyline({
                     path: feature.coordinates,
@@ -138,70 +110,94 @@
                     map: map,
                 });
 
-                  // Create the invisible clickable path (buffer zone)
                 const invisibleShape = new google.maps.Polyline({
                     path: feature.coordinates,
                     geodesic: true,
-                    strokeOpacity: 0.0,  // Invisible path
-                    strokeWeight: 12,    // Larger clickable area
-                    clickable: true,     // Ensure it's clickable
+                    strokeOpacity: 0.0,
+                    strokeWeight: 12,
+                    clickable: true,
                     map: map,
                 });
 
+                shapes.push({ shape, invisibleShape, waterId: feature.id });
 
-                // Store the shapes
-                shapes.push({ shape, invisibleShape, public: feature.public, schongebiet: feature.schongebiet });
-
-                // Add a click listener to the invisible shape (buffer zone)
                 google.maps.event.addListener(invisibleShape, "click", function () {
-                    document.getElementById("modalTitle").innerText = feature.name;
-                    document.getElementById("modalBody").innerText = feature.description;
-                    showModal();
+                    fetchWaterDetails(feature.id);
                 });
-
             });
         });
 
-        // Filter logic
-        const applyFilters = () => {
-            const showPublic = document.getElementById("filterPublic").checked;
-            const showPrivate = document.getElementById("filterPrivate").checked;
-            const showSchongebiet = document.getElementById("filterSchongebiet").checked;
-
-            shapes.forEach(({ shape, public: isPublic, schongebiet }) => {
-                if (
-                    (isPublic && showPublic) ||
-                    (!isPublic && showPrivate) ||
-                    (parseInt(schongebiet) === 1 && showSchongebiet)
-                ) {
-                    shape.setMap(map);
-                } else {
-                    shape.setMap(null);
-                }
+        function fetchWaterDetails(waterId) {
+            console.log('waterId:', waterId);
+            $.ajax({
+                url: "/get_water",
+                method: "POST",
+                data: JSON.stringify({ waterId: waterId }),
+                contentType: "application/json",
+                success: function (response) {
+                    if (response.error) {
+                        alert(response.error);
+                        return;
+                    }
+                    populateModal(response.water_info, response.catches);
+                },
+                error: function (xhr) {
+                    const response = xhr.responseJSON || {};
+                    alert(response.error || "An unexpected error occurred.");
+                },
             });
-        };
+        }
 
-        document.getElementById("filterPublic").addEventListener("change", applyFilters);
-        document.getElementById("filterPrivate").addEventListener("change", applyFilters);
-        document.getElementById("filterSchongebiet").addEventListener("change", applyFilters);
-    };
+        function populateModal(waterInfo, catches) {
+            const modalTitle = document.getElementById("modalTitle");
+            const modalBody = document.getElementById("modalBody");
 
+            modalTitle.innerText = waterInfo.WATER_NAME || "Water Details";
+            const waterDetails = `
+                <table>
+                    <tr><th>Owner</th><td>${waterInfo.OWNER_PUBLIC_INT || "N/A"}</td></tr>
+                    <tr><th>Season</th><td>${waterInfo.SAISON_FROM} - ${waterInfo.SAISON_TO}</td></tr>
+                    <tr><th>Region</th><td>${waterInfo.WATER_REGION || "Unknown"}</td></tr>
+                    <tr><th>Type</th><td>${waterInfo.WATER_TYPE || "Unknown"}</td></tr>
+                    <tr><th>Freiangelei</th><td>${waterInfo.FREIANGELEI ? "Yes" : "No"}</td></tr>
+                </table>`;
 
-    // Modal logic
-    function showModal() {
-        const modal = document.getElementById("infoModal");
-        modal.style.display = "block";
-
-        document.querySelector(".modal-close").onclick = function () {
-            modal.style.display = "none";
-        };
-
-        window.onclick = function (event) {
-            if (event.target === modal) {
-                modal.style.display = "none";
+            let catchDetails = "<h4>Catches</h4>";
+            if (catches && catches.length > 0) {
+                catchDetails += `
+                    <table>
+                        <thead>
+                            <tr><th>Fish Name</th><th>Length (cm)</th></tr>
+                        </thead>
+                        <tbody>
+                            ${catches.map(
+                                (catchData) => `<tr><td>${catchData.FISH_NAME}</td><td>${catchData.CATCH_LENGTH || "N/A"}</td></tr>`
+                            ).join("")}
+                        </tbody>
+                    </table>`;
+            } else {
+                catchDetails += "<p>No catches available.</p>";
             }
-        };
-    }
+
+            modalBody.innerHTML = `${waterDetails}<hr>${catchDetails}`;
+            showModal();
+        }
+
+        function showModal() {
+            const modal = document.getElementById("infoModal");
+            modal.style.display = "block";
+
+            document.querySelector(".modal-close").onclick = function () {
+                modal.style.display = "none";
+            };
+
+            window.onclick = function (event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            };
+        }
+    };
 </script>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgBwgs5MqH3y-hhWORHb78miJg0CqBSGw&callback=initMap"></script>
@@ -215,7 +211,7 @@
 
     <div id="map" style="height: 75vh; width: 90%; margin: 0 auto; border: 1px solid #ccc;"></div>
 
-    <div id="infoModal" class="modal" style="display: none;">
+    <div id="infoModal" class="modal">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
             <div class="modal-header" id="modalTitle"></div>
@@ -226,20 +222,20 @@
 
 <div id="controls">
     <div id="legend">
-        <h3 id="legend_title_1" class="legend_title">LEGEND</h3>
+        <h3 class="legend_title">LEGEND</h3>
         <ul>
-            <li><div class="color-box" style="background-color: #0ca4cc;"></div> <neutral_divider id="legend_element_public">Öffentliche Gewässer</neutral_divider></li>
-            <li><div class="color-box" style="background-color: #006782;"></div> <neutral_divider id="legend_element_private">Private Gewässer</neutral_divider></li>
-            <li><div class="color-box" style="background-color: #94062c;"></div> <neutral_divider id="legend_element_schongebiet">Schongebiete</neutral_divider></li>
+            <li><div class="color-box" style="background-color: #0ca4cc;"></div> Öffentliche Gewässer</li>
+            <li><div class="color-box" style="background-color: #006782;"></div> Private Gewässer</li>
+            <li><div class="color-box" style="background-color: #94062c;"></div> Schongebiete</li>
         </ul>
     </div>
 
     <div id="filters">
-        <h3 id="filter_title_1" class="legend_title">FILTERS</h3>
+        <h3 class="legend_title">FILTERS</h3>
         <ul>
-            <li><input type="checkbox" id="filterPublic" class="custom-checkbox-1" checked> <neutral_divider id="list_element_filter_public">Öffentliche Gewässer</neutral_divider></li>
-            <li><input type="checkbox" id="filterPrivate" class="custom-checkbox-1" checked> <neutral_divider id="list_element_filter_private">Private Gewässer</neutral_divider></li>
-            <li><input type="checkbox" id="filterSchongebiet"  class="custom-checkbox-1" checked> <neutral_divider id="list_element_filter_schongebiet">Schongebiete</neutral_divider></li>
+            <li><input type="checkbox" id="filterPublic" checked> Öffentliche Gewässer</li>
+            <li><input type="checkbox" id="filterPrivate" checked> Private Gewässer</li>
+            <li><input type="checkbox" id="filterSchongebiet" checked> Schongebiete</li>
         </ul>
     </div>
 </div>

@@ -1,81 +1,49 @@
-2025-01-02 20:39:05,989 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-02 20:39:07,183 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-02 20:39:11,592 ERROR: Exception on /get_coords [GET] [in C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py:828]
-Traceback (most recent call last):
-  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
-    self.dialect.do_execute(
-  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
-    cursor.execute(statement, parameters)
-sqlite3.OperationalError: no such column: Water_Coords.coord
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py", line 872, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py", line 870, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py", line 855, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\routes.py", line 86, in get_coords
-    coords = Water_Coords.query.filter(Water_Coords.water_id == water.water_id).all()
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
-    return self._iter().all()  # type: ignore
-           ^^^^^^^^^^^^
-  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
-    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
-                                                  ^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
-    return self._execute_internal(
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\orm\session.py", line 2236, in _execute_internal
-    result: Result[Any] = compile_state_cls.orm_execute_statement(
-                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\orm\context.py", line 293, in orm_execute_statement
-    result = conn.execute(
-             ^^^^^^^^^^^^^
-  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
-    return meth(
-           ^^^^^
-  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
-    return connection._execute_clauseelement(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
-    ret = self._execute_context(
-          ^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
-    return self._exec_single_context(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
-    self._handle_dbapi_exception(
-  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\engine\base.py", line 2353, in _handle_dbapi_exception
-    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
-  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
-    self.dialect.do_execute(
-  File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: Water_Coords.coord
-[SQL: SELECT "Water_Coords".water_id AS "Water_Coords_water_id", "Water_Coords".coord AS "Water_Coords_coord" 
-FROM "Water_Coords" 
-WHERE "Water_Coords".water_id = ?]
-[parameters: (1,)]
-(Background on this error at: https://sqlalche.me/e/20/e3q8)
-2025-01-02 20:41:39,332 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-02 20:41:44,500 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-02 20:41:45,662 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-02 20:44:50,451 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-02 20:46:48,249 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-02 20:46:59,884 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-02 20:51:08,292 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-02 20:51:09,473 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-02 20:51:42,730 ERROR: Exception on /get_coords [GET] [in C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py:828]
+2025-01-02 21:42:50,146 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 21:42:51,275 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 21:49:00,425 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 21:49:01,675 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 22:01:34,729 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 22:01:36,053 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 22:03:34,820 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 22:03:36,071 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 22:15:46,490 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 22:15:47,619 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 22:16:14,610 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 22:22:07,664 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 22:22:08,787 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 22:26:16,848 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 22:26:18,274 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 22:27:44,200 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 22:27:53,776 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 22:27:54,960 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 22:28:36,133 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 22:28:37,481 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 22:29:36,134 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 22:29:37,322 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-02 22:32:42,427 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 11:58:33,084 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 11:58:34,392 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 12:47:07,754 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 12:47:09,029 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 12:49:33,191 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 12:49:34,561 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 12:52:24,200 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 12:52:25,767 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 12:53:32,237 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 12:53:33,452 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 13:29:32,938 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 13:29:34,527 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 13:38:04,176 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 13:38:05,025 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 13:43:03,356 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 13:43:09,889 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 13:43:10,719 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 13:46:58,424 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 13:46:59,320 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 13:54:24,558 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 13:54:38,767 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 13:54:39,556 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 13:54:41,034 ERROR: Exception on /get_coords [GET] [in C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py:828]
 Traceback (most recent call last):
   File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
     response = self.full_dispatch_request()
@@ -90,10 +58,10 @@ Traceback (most recent call last):
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\routes.py", line 89, in get_coords
-    coord_dict = {'lat': coord.coord_x, 'lng': coord.coord_y}
-                         ^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'coord_x'
-2025-01-02 20:51:42,975 ERROR: Exception on /get_coords [GET] [in C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py:828]
+    WATER_OWNERS.OWNER_PUBLIC
+AttributeError: type object 'WATER_OWNERS' has no attribute 'OWNER_PUBLIC'
+2025-01-03 13:55:44,095 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 13:55:50,742 ERROR: Exception on /get_coords [GET] [in C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py:828]
 Traceback (most recent call last):
   File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
     response = self.full_dispatch_request()
@@ -107,14 +75,17 @@ Traceback (most recent call last):
   File "C:\Users\117940\AppData\Local\anaconda3\envs\data-science-4\Lib\site-packages\flask\app.py", line 855, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\routes.py", line 89, in get_coords
-    coord_dict = {'lat': coord.coord_x, 'lng': coord.coord_y}
-                         ^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'coord_x'
-2025-01-02 20:51:49,928 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-02 20:51:50,845 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-02 20:57:07,599 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-02 20:57:08,741 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-02 21:26:44,387 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-02 21:27:16,571 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
-2025-01-02 21:42:28,090 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+  File "C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\routes.py", line 98, in get_coords
+    for water_id, water_name, water_type, coord_x, coord_y in results:
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: too many values to unpack (expected 5)
+2025-01-03 13:56:22,547 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 13:56:31,875 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 13:56:32,618 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 14:11:15,433 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 14:13:34,883 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 14:13:37,899 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 14:13:38,658 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 14:16:04,865 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 14:16:05,723 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]
+2025-01-03 14:18:53,032 INFO: App startup [in C:\Users\117940\OneDrive - dsm-firmenich\Documents\PRIV\fishapp\app\__init__.py:49]

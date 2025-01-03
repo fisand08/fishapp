@@ -129,9 +129,9 @@ class FISHES(db.Model):
     def __repr__(self):
         return f'Owner {self.FISH_ID}'
     
-    
+
 class CATCHES(db.Model):
-    __tablename__ = 'FISHES'
+    __tablename__ = 'CATCHES'
 
     CATCH_ID = db.Column(db.Integer, primary_key=True)
     WATER_ID = db.Column(db.Integer)

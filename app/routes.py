@@ -101,6 +101,7 @@ def get_coords():
         if water_id not in coord_data:
             coord_data[water_id] = {
                 'name': water_name,
+                'id':water_id,
                 'description': water_type,
                 'public': owner_public,
                 'schongebiet':schongebiet,
@@ -115,52 +116,75 @@ def get_coords():
     return jsonify(coord_data_list)
 
 
-@app.route('/get_water', methods=['GET', 'POST'])
+@app.route('/get_water', methods=['POST'])
 def get_water():
-    """
-    description:
-        - queries water details
-    """
+    try:
+        data = request.get_json()
+        print(f'get_water recevied data: {data}')
+        if not data:
+            raise ValueError("Request data is missing or not in JSON format.")
 
+        water_id = data.get("waterId")
+        if not water_id:
+            return jsonify({"error": "Invalid or missing water ID"}), 400
 
-    results = (
-        db.session.query(
-            WATER.WATER_ID,
-            WATER.WATER_NAME,
-            WATER.WATER_TYPE,
-            WATER.WATER_REGION,
-            WATER.SCHONGEBIET,
-            WATER.WATER_SEASON_ID,
-            WATER.FREIANGELEI,
-            WATER_OWNERS.OWNER_ID,
-            WATER_OWNERS.OWNER_PUBLIC_INT,
-            WATER_SEASON.SAISON_FROM,
-            WATER_SEASON.SAISON_TO,
-            CATCHES.CATCH_FISH_ID,
-            CATCHES.CATCH_LENGTH,
-            FISHES.FISH_ID,
-            FISHES.FISH_NAME
+        # Query and process the database results
+        results = (
+            db.session.query(
+                WATER.WATER_ID,
+                WATER.WATER_NAME,
+                WATER.WATER_TYPE,
+                WATER.WATER_REGION,
+                WATER.SCHONGEBIET,
+                WATER.WATER_SEASON_ID,
+                WATER.FREIANGELEI,
+                WATER_OWNERS.OWNER_ID,
+                WATER_OWNERS.OWNER_PUBLIC_INT,
+                WATER_SEASON.SAISON_FROM,
+                WATER_SEASON.SAISON_TO,
+                CATCHES.CATCH_FISH_ID,
+                CATCHES.CATCH_LENGTH,
+                FISHES.FISH_ID,
+                FISHES.FISH_NAME
+            )
+            .filter(WATER.WATER_ID == water_id)
+            .join(WATER_OWNERS, WATER.WATER_OWNER_ID == WATER_OWNERS.OWNER_ID, isouter=True)
+            .join(WATER_SEASON, WATER.WATER_SEASON_ID == WATER_SEASON.SAISON_ID, isouter=True)
+            .join(CATCHES, WATER.WATER_ID == CATCHES.WATER_ID, isouter=True)
+            .join(FISHES, CATCHES.CATCH_FISH_ID == FISHES.FISH_ID, isouter=True)
+            .all()
         )
-        .filter(WATER.WATER_ID == 1)
-        .join(WATER_OWNERS, WATER.WATER_OWNER_ID == WATER_OWNERS.OWNER_ID)
-        .join(WATER_SEASON, WATER.WATER_SEASON_ID == WATER_SEASON.SAISON_ID)
-        .join(CATCHES, WATER.WATER_ID == CATCHES.WATER_ID)
-        .join(FISHES, CATCHES.CATCH_FISH_ID == FISHES.FISH_ID)
-        .all()
-    )
-    print(results)
 
+        if not results:
+            return jsonify({"error": "Water not found"}), 404
 
-    return jsonify({
-        "WATER_ID": results.WATER_ID,
-        "WATER_NAME": results.WATER_NAME,
-        "WATER_TYPE": results.WATER_TYPE,
-        "SCHONGEBIET": results.SCHONGEBIET,
-        "FREIANGELEI": results.FREIANGELEI,
-        "OWNER_PUBLIC_INT": results.OWNER_PUBLIC_INT,
-        "SAISON_FROM": results.SAISON_FROM,
-        "SAISON_TO": results.SAISON_TO,
-    })
+        water_info = {
+            "WATER_ID": results[0].WATER_ID,
+            "WATER_NAME": results[0].WATER_NAME,
+            "WATER_TYPE": results[0].WATER_TYPE,
+            "WATER_REGION": results[0].WATER_REGION,
+            "SCHONGEBIET": results[0].SCHONGEBIET,
+            "FREIANGELEI": results[0].FREIANGELEI,
+            "OWNER_PUBLIC_INT": results[0].OWNER_PUBLIC_INT,
+            "SAISON_FROM": results[0].SAISON_FROM,
+            "SAISON_TO": results[0].SAISON_TO,
+        }
+
+        catches = [
+            {
+                "CATCH_FISH_ID": row.CATCH_FISH_ID,
+                "CATCH_LENGTH": row.CATCH_LENGTH,
+                "FISH_ID": row.FISH_ID,
+                "FISH_NAME": row.FISH_NAME,
+            }
+            for row in results if row.CATCH_FISH_ID
+        ]
+
+        return jsonify({"water_info": water_info, "catches": catches})
+    except Exception as e:
+        app.logger.error(f"Error in /get_water: {e}", exc_info=True)
+        return jsonify({"error": "An unexpected error occurred.", "details": str(e)}), 500
+
 
 
 
