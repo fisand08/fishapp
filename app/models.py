@@ -71,7 +71,9 @@ class WATER(db.Model):
     WATER_OWNER_ID = db.Column(db.Integer) 
     SCHONGEBIET = db.Column(db.Boolean)
     WATER_SEASON_ID = db.Column(db.Integer)
-    
+    FREIANGELEI = db.Column(db.Boolean)
+    FREIANGELEI_INT = db.Column(db.Integer)
+
     def __repr__(self):
         return f'Water {self.water_id}'
 
@@ -99,6 +101,8 @@ class WATER_OWNERS(db.Model):
     OWNER_PLZ = db.Column(db.Integer)
     OWNER_CITY = db.Column(db.String(1024))
     OWNER_COUNTRY = db.Column(db.String(1024))
+    OWNER_PUBLIC = db.Column(db.Boolean)
+    OWNER_PUBLIC_INT = db.Column(db.Integer)
 
     def __repr__(self):
         return f'Error {self.error_idx} submitted by {self.submitting_user} at {self.submission.date}'

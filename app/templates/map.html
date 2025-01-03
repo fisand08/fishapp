@@ -1,60 +1,132 @@
 {% extends "base.html" %}
 {% block content %}
 <style>
-    #map {
-        height: 90vh;
-        width: 90%; /* Adjust the width to 80% */
-        margin: 0 auto; /* Center the map horizontally */
-        border: 1px solid #ccc; /* Optional: Add a border for better visual distinction */
+
+    #controls {
+        display: flex;
+        justify-content: space-between;
+        width: 90%; /* Match the map width */
+        margin: 10px auto; /* Center horizontally */
     }
-    /* Modal Styles */
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1050; /* Sit on top */
-        padding-top: 10%;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
-    }
-    .modal-content {
-        margin: auto;
-        padding: 20px;
-        background: #fff;
+    #legend, #filters {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
         border-radius: 5px;
-        width: 60%;
-        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        background-color: #f9f9f9;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
     }
-    .modal-header {
-        font-size: 1.5rem;
-        margin-bottom: 15px;
+    #legend {
+        margin-right: 10px;
     }
-    .modal-close {
-        float: right;
-        font-size: 1.5rem;
-        cursor: pointer;
+    #legend ul, #filters ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    #legend li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+    #legend .color-box {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
     }
 </style>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgBwgs5MqH3y-hhWORHb78miJg0CqBSGw&loading=async"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    // Define initMap globally for Google Maps API callback
+    window.initMap = function () {
+        const map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 46.93344282067525, lng: 8.22573253428211 },
+            zoom: 9,
+        });
 
-<section class="client_section layout_padding-bottom">
+        const shapes = []; // Store all shapes for filtering
+
+        // Fetch river/lake data from Flask backend
+        $.getJSON("/get_coords", function (data) {
+            data.forEach((feature) => {
+                // Determine river color
+                let riverColor = "#006782"; // Default private
+                if (parseInt(feature.public) === 1) riverColor = "#0ca4cc"; // Public
+                if (parseInt(feature.schongebiet) === 1) riverColor = "#94062c"; // Schongebiet
+
+                const shape = new google.maps.Polyline({
+                    path: feature.coordinates,
+                    geodesic: true,
+                    strokeColor: riverColor,
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2,
+                    map: map,
+                });
+
+                shapes.push({ shape, public: feature.public, schongebiet: feature.schongebiet });
+
+                google.maps.event.addListener(shape, "click", function () {
+                    document.getElementById("modalTitle").innerText = feature.name;
+                    document.getElementById("modalBody").innerText = feature.description;
+                    showModal();
+                });
+            });
+        });
+
+        // Filter logic
+        const applyFilters = () => {
+            const showPublic = document.getElementById("filterPublic").checked;
+            const showPrivate = document.getElementById("filterPrivate").checked;
+            const showSchongebiet = document.getElementById("filterSchongebiet").checked;
+
+            shapes.forEach(({ shape, public: isPublic, schongebiet }) => {
+                if (
+                    (isPublic && showPublic) ||
+                    (!isPublic && showPrivate) ||
+                    (parseInt(schongebiet) === 1 && showSchongebiet)
+                ) {
+                    shape.setMap(map);
+                } else {
+                    shape.setMap(null);
+                }
+            });
+        };
+
+        document.getElementById("filterPublic").addEventListener("change", applyFilters);
+        document.getElementById("filterPrivate").addEventListener("change", applyFilters);
+        document.getElementById("filterSchongebiet").addEventListener("change", applyFilters);
+    };
+
+    // Modal logic
+    function showModal() {
+        const modal = document.getElementById("infoModal");
+        modal.style.display = "block";
+
+        document.querySelector(".modal-close").onclick = function () {
+            modal.style.display = "none";
+        };
+
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+    }
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgBwgs5MqH3y-hhWORHb78miJg0CqBSGw&callback=initMap"></script>
+
+<section class="client_section layout_padding-bottom" style="padding-bottom: 0px;">
     <div class="container">
         <div class="heading_container">
-            <h2 id="maps_title">
-                Karte
-            </h2>
+            <h2 id="maps_title">Karte</h2>
         </div>
     </div>
 
-    <div id="map"></div>
+    <div id="map" style="height: 75vh; width: 90%; margin: 0 auto; border: 1px solid #ccc;"></div>
 
-    <!-- Modal -->
-    <div id="infoModal" class="modal">
+    <div id="infoModal" class="modal" style="display: none;">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
             <div class="modal-header" id="modalTitle"></div>
@@ -63,59 +135,23 @@
     </div>
 </section>
 
-<script>
-    let map;
+<div id="controls">
+    <div id="legend">
+        <h3>Legend</h3>
+        <ul>
+            <li><div class="color-box" style="background-color: #0ca4cc;"></div> Public Water</li>
+            <li><div class="color-box" style="background-color: #006782;"></div> Private Water</li>
+            <li><div class="color-box" style="background-color: #94062c;"></div> Schongebiet</li>
+        </ul>
+    </div>
 
-    function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-            // center: { lat: 47.34340641554805, lng: 7.87643344258413 },
-            // 46.93344282067525, 8.22573253428211
-            center: { lat: 46.93344282067525, lng: 8.22573253428211 },
-            // center: { lat: 46.79473013202843, lng: 8.257157079565662 },
-            zoom: 9,
-        });
-
-        // Fetch river/lake data from Flask backend
-        $.getJSON("/get_coords", function (data) {
-            data.forEach((feature) => {
-                const shape = new google.maps.Polyline({
-                    path: feature.coordinates,
-                    geodesic: true,
-                    strokeColor: "#FF0000",
-                    strokeOpacity: 1.0,
-                    strokeWeight: 2,
-                    map: map,
-                });
-
-                // Add click event to show modal
-                google.maps.event.addListener(shape, "click", function () {
-                    document.getElementById("modalTitle").innerText = feature.name;
-                    document.getElementById("modalBody").innerText = feature.description;
-                    showModal();
-                });
-            });
-        });
-    }
-
-    // Function to show the modal
-    function showModal() {
-        const modal = document.getElementById("infoModal");
-        modal.style.display = "block";
-
-        // Close modal when the close button is clicked
-        document.querySelector(".modal-close").onclick = function () {
-            modal.style.display = "none";
-        };
-
-        // Close modal when clicked outside the content
-        window.onclick = function (event) {
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
-        };
-    }
-
-    // Initialize the map
-    window.onload = initMap;
-</script>
+    <div id="filters">
+        <h3>Filter</h3>
+        <ul>
+            <li><input type="checkbox" id="filterPublic" checked> Public Water</li>
+            <li><input type="checkbox" id="filterPrivate" checked> Private Water</li>
+            <li><input type="checkbox" id="filterSchongebiet" checked> Schongebiet</li>
+        </ul>
+    </div>
+</div>
 {% endblock %}

@@ -1,7 +1,7 @@
 from app import app, db
 from flask import render_template, flash, redirect, url_for
 from app.forms import LoginForm, RegistrationForm, EditProfileForm
-from app.models import User, WATER, WATER_COORDS
+from app.models import User, WATER, WATER_COORDS, WATER_OWNERS, WATER_SEASON
 import sqlalchemy as sa
 from flask_login import current_user, login_user, logout_user, login_required
 from flask import request, jsonify
@@ -66,37 +66,6 @@ def furniture():
 #######                LOGIC                     #########
 ##########################################################
 
-# @app.route('/get_coords', methods=['GET', 'POST'])
-# def get_coords():
-#     """
-#     description:
-#         - queries coordinates from database into proper format
-#     input: 
-#         - nothing
-#     output:
-#         - coord_data: list of dict; data in proper format
-#     """
-
-#     coord_data = []
-
-#     waters = WATER.query.all()
-#     print(f'Found {len(waters)} waters')
-#     for water in waters:
-#         data_per_water = {}
-#         coordinates = [] 
-#         coords = WATER_COORDS.query.filter(WATER_COORDS.WATER_ID == water.WATER_ID).all()
-#         print(f'found {len(coords)} coordinates for {water.WATER_NAME} with id={water.WATER_ID}')
-#         for coord in coords:
-#             coord_dict = {'lat': coord.COORD_X, 'lng': coord.COORD_Y}
-#             coordinates.append(coord_dict)  # Append to `coordinates`
-#         data_per_water.update({'name': water.WATER_NAME})
-#         data_per_water.update({'description': water.WATER_TYPE})
-#         data_per_water.update({'coordinates': coordinates})
-#         coord_data.append(data_per_water)
-
-#     #print(coord_data)
-#     return jsonify(coord_data)
-
 @app.route('/get_coords', methods=['GET', 'POST'])
 def get_coords():
     """
@@ -114,28 +83,69 @@ def get_coords():
             WATER.WATER_ID,
             WATER.WATER_NAME,
             WATER.WATER_TYPE,
+            WATER.WATER_OWNER_ID,
+            WATER.SCHONGEBIET,
             WATER_COORDS.COORD_X,
-            WATER_COORDS.COORD_Y
+            WATER_COORDS.COORD_Y,
+            WATER_OWNERS.OWNER_PUBLIC_INT
         )
         .join(WATER_COORDS, WATER.WATER_ID == WATER_COORDS.WATER_ID)
+        .join(WATER_OWNERS, WATER.WATER_OWNER_ID == WATER_OWNERS.OWNER_ID)
+
         .all()
     )
+    print(results[:20])
 
     # Organize data into the desired format
     coord_data = {}
-    for water_id, water_name, water_type, coord_x, coord_y in results:
+    for water_id, water_name, water_type, water_owner_id, schongebiet, coord_x, coord_y, owner_public in results:
         if water_id not in coord_data:
             coord_data[water_id] = {
                 'name': water_name,
                 'description': water_type,
+                'public': owner_public,
+                'schongebiet':schongebiet,
                 'coordinates': []
             }
+            #print(water_name, water_type, owner_public, schongebiet )
         coord_data[water_id]['coordinates'].append({'lat': coord_x, 'lng': coord_y})
 
     # Convert the data structure to a list of dictionaries
     coord_data_list = list(coord_data.values())
 
     return jsonify(coord_data_list)
+
+
+@app.route('/get_water', methods=['GET', 'POST'])
+def get_water():
+    """
+    description:
+        - queries water details
+    """
+
+    results_owner = db.session.query(WATER_OWNERS.OWNER_PUBLIC).all()
+    print(results_owner)
+
+    results = (
+        db.session.query(
+            WATER.WATER_ID,
+            WATER.WATER_NAME,
+            WATER.WATER_TYPE,
+            WATER.SCHONGEBIET,
+            WATER.WATER_SEASON_ID,
+            WATER.FREIANGELEI,
+            WATER_OWNERS.OWNER_ID,
+            WATER_OWNERS.OWNER_PUBLIC_INT,
+            WATER_SEASON.SAISON_FROM,
+            WATER_SEASON.SAISON_TO
+        )
+        .join(WATER_OWNERS, WATER.WATER_OWNER_ID == WATER_OWNERS.OWNER_ID)
+        .join(WATER_SEASON, WATER.WATER_SEASON_ID == WATER_SEASON.SAISON_ID)
+        .all()
+    )
+    print(results)
+
+    return jsonify({'results':'result'})
 
 
 ##########################################################
