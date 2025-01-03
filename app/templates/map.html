@@ -138,13 +138,27 @@
                     map: map,
                 });
 
-                shapes.push({ shape, public: feature.public, schongebiet: feature.schongebiet });
+                  // Create the invisible clickable path (buffer zone)
+                const invisibleShape = new google.maps.Polyline({
+                    path: feature.coordinates,
+                    geodesic: true,
+                    strokeOpacity: 0.0,  // Invisible path
+                    strokeWeight: 12,    // Larger clickable area
+                    clickable: true,     // Ensure it's clickable
+                    map: map,
+                });
 
-                google.maps.event.addListener(shape, "click", function () {
+
+                // Store the shapes
+                shapes.push({ shape, invisibleShape, public: feature.public, schongebiet: feature.schongebiet });
+
+                // Add a click listener to the invisible shape (buffer zone)
+                google.maps.event.addListener(invisibleShape, "click", function () {
                     document.getElementById("modalTitle").innerText = feature.name;
                     document.getElementById("modalBody").innerText = feature.description;
                     showModal();
                 });
+
             });
         });
 
